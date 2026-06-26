@@ -1,0 +1,70 @@
+<% layout("/layouts/auth") %>
+
+<div class="auth-page">
+
+    <!-- DARK OVERLAY -->
+    <div class="auth-overlay"></div>
+
+    <!-- SIGNUP CARD -->
+    <div class="auth-card">
+
+        <!-- LOGO -->
+        <div class="text-center mb-3">
+            <i class="fa-brands fa-airbnb auth-logo"></i>
+        </div>
+
+        <!-- TITLE -->
+        <h2 class="text-center fw-bold mb-4">
+            Create Account
+        </h2>
+
+        <!-- SIGNUP FORM -->
+        <form method="POST" action="/signup">
+
+            <!-- USERNAME -->
+            <div class="mb-3">
+                <input
+                    type="text"
+                    name="username"
+                    class="form-control auth-input"
+                    placeholder="Enter Username"
+                    required
+                >
+            </div>
+
+            <!-- EMAIL -->
+            <div class="mb-3">
+                <input
+                    type="email"
+                    name="email"
+                    class="form-control auth-input"
+                    placeholder="Enter Email"
+                    required
+                >
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="mb-3">
+                <input
+                    type="password"
+                    name="password"
+                    class="form-control auth-input"
+                    placeholder="Enter Password"
+                    required
+                >
+            </div>
+
+            <!-- BUTTON -->
+            <button class="auth-btn">
+                Sign Up
+            </button>
+
+            <div class="text-center mt-3">
+    Already have an account?
+    <a href="/login">Login</a>
+</div>
+        </form>
+
+    </div>
+
+</div>

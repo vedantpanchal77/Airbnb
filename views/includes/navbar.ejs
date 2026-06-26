@@ -1,0 +1,87 @@
+<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top shadow-sm">
+
+  <div class="container">
+
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center" href="/listings">
+      <i class="fa-brands fa-airbnb auth-logo me-2"></i>
+      
+    </a>
+
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+      <!-- Left Menu -->
+      <div class="navbar-nav ms-3">
+
+        <a class="nav-link" href="/listings">
+          Home
+        </a>
+         <a
+          href="/listings/new"
+          class="btn btn-light me-3 host-btn">
+          List Your Place
+        </a>
+
+      </div>
+
+      <!-- Search -->
+     <form
+    class="search-box mx-auto"
+    action="/listings"
+    method="GET">
+
+    <input
+        type="search"
+        name="search"
+        value="<%= typeof search !== 'undefined' ? search : '' %>"
+        placeholder="Start your search">
+
+    <button type="submit">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+
+</form>
+
+      <!-- Right -->
+      <div class="navbar-nav ms-auto align-items-center">
+
+       
+
+        <% if(currUser){ %>
+
+          <a
+            class="logout-btn"
+            href="/logout">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+
+          </a>
+
+        <% } else { %>
+
+          <a class="nav-link" href="/login">
+            Login
+          </a>
+
+          <a class="btn btn-danger ms-2 px-4" href="/signup">
+            Sign Up
+          </a>
+
+        <% } %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</nav>

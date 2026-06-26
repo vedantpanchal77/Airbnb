@@ -1,0 +1,58 @@
+<% layout("/layouts/boilerplate") %>
+
+<h3>All Listings</h3>
+
+<% if(alllistings.length > 0){ %>
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+
+    <% for(let listing of alllistings){ %>
+
+    <a href="/listings/<%= listing._id %>" class="listing-link">
+
+        <div class="card col">
+
+            <img
+                src="<%= listing.image?.url || listing.image || 'https://source.unsplash.com/1600x900/?hotel' %>"
+                class="card-img-top"
+                style="height:20rem;">
+
+            <div class="card-img-overlay"></div>
+
+            <div class="card-body">
+
+                <p class="card-text">
+
+                    <b><%= listing.title %></b>
+
+                    <br>
+
+                    &#8377;<%= listing.price ? listing.price.toLocaleString("en-IN") : "0" %> / night
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </a>
+
+    <% } %>
+
+</div>
+
+<% } else { %>
+
+<div class="text-center mt-5">
+
+    <i class="fa-solid fa-magnifying-glass fa-3x text-secondary mb-3"></i>
+
+    <h3>No Listings Found</h3>
+
+    <p class="text-muted">
+        Try searching with another destination.
+    </p>
+
+</div>
+
+<% } %>

@@ -1,0 +1,160 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row mt-4">
+  <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
+
+    <div class="card show-card">
+
+      <!-- Image -->
+      <img 
+  src="<%= listing.image?.url || listing.image || 'https://source.unsplash.com/1200x800/?hotel' %>" 
+  class="card-img-top show-img">
+
+      <!-- Content -->
+      <div class="card-body">
+
+        <h4 class="card-title"><%= listing.title %></h4>
+
+        <p class="card-text text-muted"><%= listing.description %></p>
+
+        <p class="card-text price">
+          ₹<%= listing.price ? listing.price.toLocaleString("en-IN") : "0" %> / night
+        </p>
+
+        <p class="card-text location">
+          <i class="fa-solid fa-location-dot"></i>
+          <%= listing.location %>, <%= listing.country %>
+        </p>
+
+        <!-- Buttons -->
+       <div class="d-flex gap-2 mt-3">
+
+  <% if(currUser && listing.owner && listing.owner.equals(currUser._id)){ %>
+
+    <a
+      href="/listings/<%= listing._id %>/edit"
+      class="btn btn-outline-dark w-50"
+    >
+      Edit
+    </a>
+
+    <form
+      method="POST"
+      action="/listings/<%= listing._id %>?_method=DELETE"
+      class="w-50"
+    >
+      <button class="btn btn-danger w-100">
+        Delete
+      </button>
+    </form>
+
+  <% } %>
+
+</div>
+    <!-- REVIEW SECTION -->
+
+<div class="review-section mt-4">
+
+  <!-- REVIEW FORM -->
+
+  <div class="review-form-box">
+
+    <h4 class="mb-3">Leave a Review</h4>
+
+    <form action="/listings/<%= listing._id %>/reviews" method="POST">
+
+       <!-- STAR RATING -->
+
+    <div class="star-rating mb-3">
+
+      <input type="radio" name="review[rating]" value="5" id="star5" required>
+      <label for="star5">★</label>
+
+      <input type="radio" name="review[rating]" value="4" id="star4">
+      <label for="star4">★</label>
+
+      <input type="radio" name="review[rating]" value="3" id="star3">
+      <label for="star3">★</label>
+
+      <input type="radio" name="review[rating]" value="2" id="star2">
+      <label for="star2">★</label>
+
+      <input type="radio" name="review[rating]" value="1" id="star1">
+      <label for="star1">★</label>
+
+    </div>
+
+      <!-- Comment -->
+
+      <div class="mb-3">
+        <label class="form-label">Comment</label>
+
+        <textarea
+          name="review[comment]"
+          class="form-control"
+          rows="4"
+          placeholder="Write your experience..."
+          required
+        ></textarea>
+      </div>
+
+      <button class="btn review-btn">
+        Submit Review
+      </button>
+
+    </form>
+
+  </div>
+
+  <!-- ALL REVIEWS -->
+
+  <div class="all-reviews mt-4">
+
+    <h4 class="mb-3">Guest Reviews</h4>
+
+    <% if(listing.reviews.length > 0){ %>
+
+      <% for(let review of listing.reviews){ %>
+
+        <div class="review-card mb-3">
+
+          <div class="review-stars mb-2">
+
+            <% for(let i=0; i<review.rating; i++){ %>
+              ⭐
+            <% } %>
+
+          </div>
+
+          <p class="review-comment">
+            <%= review.comment %>
+          </p>
+         <% if(currUser && review.owner && review.owner._id.equals(currUser._id)){ %>
+
+<form
+  method="POST"
+  action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE"
+>
+  <button class="btn review-delete-btn">
+    Delete
+  </button>
+</form>
+
+<% } %>
+
+        </div>
+
+      <% } %>
+
+    <% } else { %>
+
+      <p class="text-muted">No reviews yet.</p>
+
+    <% } %>
+
+  </div>
+
+</div>
+
+  </div>
+</div>

@@ -1,0 +1,13 @@
+app.get("/testListing",async(req, res) => {
+    let sampleListing= new Listing({
+        title:"My New Villa",
+        description: "By the beach",
+        price:2000,
+        location: "Calangute, Goa",
+        country:"India"
+    });
+    await sampleListing.save();
+    console.log("Sample was saved");
+    res.send("succsesfull")
+
+});

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    
+    <%- include("../includes/navbar2.ejs")%>
+    <div class="container">
+        <% if(success.length > 0){ %>
+
+        <div class="alert alert-success alert-dismissible fade show mt-3">
+
+            <%= success %>
+
+            <button 
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert">
+            </button>
+
+        </div>
+
+    <% } %>
+
+    <% if(error.length > 0){ %>
+
+        <div class="alert alert-danger alert-dismissible fade show mt-3">
+
+            <%= error %>
+
+            <button 
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert">
+            </button>
+
+        </div>
+
+    <% } %>
+        <%- body %>
+    </div>
+    <%- include("../includes/footer.ejs")%>
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="/JS/script.js"></script>
+</body>
+</html>
+<!-- website's all page is look like this -->
+
+<!-- Flash
+
+STEP 5 → Flash Message Stored
+req.flash("success", "New Listing Created!");
+
+Now connect-flash stores message INSIDE SESSION.
+
+Internally something like:
+
+req.session.flash = {
+   success: ["New Listing Created!"]
+}
+
+Stored temporarily.
+
+STEP 6 → Redirect
+res.redirect("/listings");
+
+Browser automatically requests:
+
+GET /listings
+STEP 7 → Middleware Runs FIRST
+
+Before route:
+
+app.use((req,res,next)=>{
+
+   res.locals.success = req.flash("success");
+
+   next();
+
+});
+
+runs.
+
+STEP 8 → req.flash("success")
+
+Reads flash message from session:
+
+["New Listing Created!"]
+
+and removes it after reading.
+
+STEP 9 → Stored in res.locals
+res.locals.success = ["New Listing Created!"]
+
+Now ALL EJS pages can use:
+
+success
+
+variable.
+
+STEP 10 → Route Continues
+
+Now this route runs:
+
+app.get("/listings")
+
+and renders:
+
+res.render("listings/index.ejs")
+STEP 11 → boilerplate.ejs Loads
+
+This code executes:
+
+if(success.length > 0)
+
+success contains:
+
+["New Listing Created!"]
+
+Condition TRUE ✅
+
+STEP 12 → Alert Box Displayed
+< success>
+
+prints:
+
+New Listing Created!
+
+Browser shows green alert.
+
+STEP 13 → Refresh Page
+
+Now flash already removed.
+
+So:
+
+req.flash("success")
+
+returns:
+
+[]
+
+Condition becomes FALSE.
+
+Alert disappears. -->
