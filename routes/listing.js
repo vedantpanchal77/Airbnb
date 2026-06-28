@@ -16,7 +16,7 @@
 router.get("/", wrapAsync(async (req, res) => {
 
     const { search } = req.query;
-    console.log("Search:", search);
+   
 
     let alllistings;
 
@@ -54,7 +54,7 @@ router.get("/", wrapAsync(async (req, res) => {
     } else {
 
         alllistings = await Listing.find({});
-        console.log(alllistings);
+        
 
     }
 

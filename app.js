@@ -1,4 +1,6 @@
+  require("dotenv").config();
   const express= require("express");
+
 
   const mongoose = require("mongoose");
 
@@ -6,7 +8,7 @@
 
   const app = express();
 
-  const port = 3000;
+  const port = process.env.PORT;
 
   const ejsMate= require("ejs-mate");
 
@@ -99,18 +101,15 @@
 
   });
 
-require("dotenv").config();
+
 
   // mongodb connection
-  mongoose.connect("mongodb://localhost:27017/Airbnb")
+mongoose.connect(process.env.ATLAS_DB_URL)
+.then(() => {
+    console.log("MongoDB Atlas Connected");
+})
+.catch((err) => console.log(err));
 
-  .then(()=>{
-
-      console.log("mongodb connected")
-
-  })
-
-  .catch(err=>console.log(err));
 
 
 
